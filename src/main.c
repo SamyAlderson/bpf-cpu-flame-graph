@@ -3,6 +3,6 @@
 #include "utils.h"
 
 int main() {
-    printf("Hello, World!\n");
+    // Your main function code here
     return 0;
 }
