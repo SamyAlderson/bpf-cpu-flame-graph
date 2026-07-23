@@ -1,112 +1,58 @@
-# bpf-cpu-flame-graph
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![CI Status](https://github.com/SamyAlderson/bpf-cpu-flame-graph/actions/workflows/ci.yml/badge.svg)](https://github.com/SamyAlderson/bpf-cpu-flame-graph/actions/workflows/ci.yml)
-[![Language: C](https://img.shields.io/badge/Language-C-green.svg)](https://isocpp.org/)
+# BPF-CPU-Flame-Graph
+Generate CPU flame graphs using BPF for performance analysis
 
-**"Visualize CPU performance with precision and simplicity"**
+A lightweight tool for visualizing CPU usage patterns.
 
-## Overview
+## What it does
+This project uses BPF (Berkeley Packet Filter) to generate a CPU flame graph, useful for performance analysis. It's designed to be simple and easy to use. The goal is to provide a basic framework for exploring CPU usage patterns.
 
-bpf-cpu-flame-graph is a C-based project that generates a CPU flame graph using BPF (Berkeley Packet Filter) for performance analysis. This tool is designed to provide a detailed breakdown of CPU usage, enabling developers to pinpoint performance bottlenecks and optimize system resources.
-
-## Features
-
-*   BPF program compilation
-*   CPU flame graph generation
-*   Performance analysis
-*   Kernel module loading
-
-## Prerequisites
-
-*   Linux kernel 4.10 or later
-*   BPF support enabled (usually enabled by default)
-*   C compiler (e.g., `gcc`)
-*   Make utility (usually installed by default)
-
-## Installation
-
-1.  Clone the repository using Git: `git clone https://github.com/SamyAlderson/bpf-cpu-flame-graph.git`
-2.  Navigate to the project directory: `cd bpf-cpu-flame-graph`
-3.  Run the build script using Make: `make`
+## Install
+```bash
+git clone https://github.com/SamyAlderson/bpf-cpu-flame-graph.git
+cd bpf-cpu-flame-graph
+make
+```
 
 ## Usage
-
-To generate a CPU flame graph, follow these steps:
-
 ```bash
-# Load the BPF program
-sudo ./bpf_load.sh
-
-# Run the flame graph generator
-./flame_graph.sh
+./bpf-cpu-flame-graph -h
+Usage: ./bpf-cpu-flame-graph [options] <pid>
+  -h, --help            show this help message and exit
+  -p, --pid PID         process ID to analyze
+  -o, --output FILE     output file for the flame graph
 ```
-
-This will produce a flame graph in the `output` directory.
-
-```c
-// Example usage in src/main.c
-#include <stdio.h>
-#include "bpf.h"
-
-int main() {
-    // Load the BPF program
-    int fd = bpf_load_program(BPF_OBJ_FILE);
-
-    // Generate the flame graph
-    flame_graph(fd);
-
-    return 0;
-}
-```
-
-## Project Architecture / Structure
-
-The project is structured as follows:
-
-*   `src/`: Source code directory
-    *   `main.c`: Main entry point for the BPF program
-    *   `utils.c`: Utility functions for the BPF program
-    *   `bpf.c`: BPF program implementation
-    *   `bpf.h`: Header file for the BPF program
-*   `tests/`: Unit tests directory
-    *   `test_bpf.c`: Unit tests for the BPF program
-    *   `test_utils.c`: Unit tests for the utility functions
-*   `Makefile`: Build script for the project
-*   `config.mk`: Makefile configuration file
-
-## Building from Source
-
-To build the project from source, run the following commands:
-
+Run the tool with a process ID, e.g.:
 ```bash
-# Compile the BPF program
+./bpf-cpu-flame-graph -p 1234 -o flamegraph.svg
+```
+This will generate a flame graph for process 1234 and save it as flamegraph.svg.
+
+## Build from source
+Make sure you have the necessary dependencies installed, including a C compiler and the bpf libraries. Then, run:
+```bash
 make
-
-# Load the BPF program
-sudo ./bpf_load.sh
-
-# Generate the flame graph
-./flame_graph.sh
 ```
 
-## Testing
-
-Unit tests are located in the `tests/` directory. To run the tests, use the following command:
-
+## Run tests
 ```bash
 make test
 ```
+This will run the test suite, which includes 7 test cases.
 
-## Contributing Guidelines
-
-Contributions are welcome and appreciated! Please follow these guidelines:
-
-1.  Fork the repository on GitHub
-2.  Create a new branch for your changes
-3.  Make your changes and commit them
-4.  Push your changes to the remote branch
-5.  Open a pull request on GitHub
+## Project structure
+- `main.c`: the entry point for the program
+- `bpf.c`: contains the BPF-related code
+- `utils.c`: utility functions for the program
+- `test_main.c`: the test suite
+- `Makefile`: the build script
+- `README.md`: this file
+- `LICENSE`: the project license
 
 ## License
+Copyright (c) 2026 SamyAlderson
 
-bpf-cpu-flame-graph is licensed under the MIT License. See `LICENSE.txt` for details.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
