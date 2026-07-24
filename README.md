@@ -1,63 +1,45 @@
 # bpf-cpu-flame-graph
-A BPF-based CPU flame graph generator for performance analysis
+**BPF-based CPU flame graph generator for performance analysis**
 
-## What it does
-This project generates a CPU flame graph using BPF (Berkeley Packet Filter) for performance analysis. It's designed to provide a detailed view of CPU usage, helping developers identify performance bottlenecks and optimize their systems.
+This project generates a CPU flame graph using BPF for performance analysis. It's a simple tool to help developers understand CPU usage and identify performance bottlenecks. The goal is to provide a lightweight, easy-to-use solution that integrates with existing BPF-based performance tools.
 
 ## Install
-To install, simply clone this repository and compile the BPF program:
 ```bash
 git clone https://github.com/SamyAlderson/bpf-cpu-flame-graph.git
 cd bpf-cpu-flame-graph
-make
+make install
 ```
 ## Usage
-To generate a CPU flame graph, run the following command:
 ```bash
-sudo ./bpf-cpu-flame-graph > flame_graph.svg
+./bpf-cpu-flame-graph --help
 ```
-This will generate a flame graph in SVG format, which can be viewed using any web browser.
+This will display usage instructions. Run the program with the `-p` flag to specify the file path where you want to save the flame graph.
 
-## Building from source
-To build from source, run the following commands:
+## Build from Source
 ```bash
-make clean
 make
 ```
-This will recompile the BPF program and any dependencies.
+This will build the program and its dependencies.
 
-## Running tests
-To run the test suite, execute the following command:
+## Run Tests
 ```bash
 make test
 ```
-This will run the tests in the `test/` directory.
+This will run the test suite.
 
-## Project structure
-The project consists of the following key files:
-
-* `bpf-cpu-flame-graph.c`: The main BPF program.
-* `parser.c`: A utility function for parsing CPU usage data.
-* `test/`: A test suite for the BPF program.
-* `Makefile`: A build script for compiling and linking the BPF program.
+## Project Structure
+- `bpf-cpu-flame-graph.c`: main program
+- `bpf.c`: BPF-related functions
+- `utils.c`: utility functions
+- `test_bpf-cpu-flame-graph.c`: test suite
+- `Makefile`: build script
+- `README.md`: this file
 
 ## License
 Copyright (c) 2026 SamyAlderson
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
